@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LolCounterSelect</string>
+    <string name="lol">League of Legends</string>
+    <string name="action_settings">Settings</string>
+    <string name="tier_lists">Tier Lists</string>
+    <string name="counter_picks">Counter Picks</string>
+    <string name="title_activity_tier_lists">TierListsActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>

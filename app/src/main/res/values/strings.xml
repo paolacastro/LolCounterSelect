@@ -9,6 +9,7 @@
     <string name="title_activity_tier_lists">TierListsActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_champion_select">ChampionSelectActivity</string>
+    <string name="title_activity_champion_counters">ChampionCounters</string>
 
 
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.paolac.lolcounterselect" >
+    package="com.example.paolac.lolcounterselect">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,10 +11,10 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".HomeActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,10 +23,13 @@
         </activity>
         <activity
             android:name=".TierListsActivity"
-            android:label="@string/title_activity_tier_lists"></activity>
+            android:label="@string/title_activity_tier_lists" />
         <activity
             android:name=".ChampionSelectActivity"
-            android:label="@string/title_activity_champion_select"></activity>
+            android:label="@string/title_activity_champion_select" />
+        <activity
+            android:name=".ChampionCounters"
+            android:label="@string/title_activity_champion_counters"></activity>
     </application>
 
 </manifest>

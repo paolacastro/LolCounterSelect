@@ -23,7 +23,7 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
 
         // create ViewHolder
 
-        ViewHolder viewHolder = new ViewHolder(itemLayoutView);
+        ViewHolder viewHolder = new ViewHolder(itemLayoutView, this);
         return viewHolder;
     }
 
@@ -47,9 +47,11 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView txtViewTitle;
+        public ChampionSelectAdapter parentAdapter;
 
-        public ViewHolder(View itemLayoutView) {
+        public ViewHolder(View itemLayoutView, ChampionSelectAdapter adapter) {
             super(itemLayoutView);
+            parentAdapter = adapter;
             itemLayoutView.setOnClickListener(this);
             txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.item_title);
         }
@@ -57,6 +59,7 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
         @Override
         public void onClick(View view) {
             Toast.makeText(view.getContext(), "position = " + getPosition(), Toast.LENGTH_SHORT).show();
+            ChampionCounters.start(this.parentAdapter);
         }
     }
 }

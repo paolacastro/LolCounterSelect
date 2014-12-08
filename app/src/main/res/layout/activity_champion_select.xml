@@ -13,10 +13,10 @@
         android:layout_height="wrap_content"
         android:text="@string/title_activity_champion_select" />
 
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/champion_select_recycler_view"-->
-    <!--android:scrollbars="vertical"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"/>-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/champion_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
 </RelativeLayout>

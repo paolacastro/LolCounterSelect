@@ -3,39 +3,37 @@ package com.example.paolac.lolcounterselect;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.squareup.okhttp.Headers;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-
-import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class ChampionSelectActivity extends Activity {
 
-    private final OkHttpClient client = new OkHttpClient();
+//    private final OkHttpClient client = new OkHttpClient();
 
     public static void start(HomeActivity context) {
         Intent intent = new Intent(context, ChampionSelectActivity.class);
         context.startActivity(intent);
     }
 
-    public void run() throws Exception {
-        Request request = new Request.Builder()
-                .url("https://prototype-api.herokuapp.com/champions.json")
-                .build();
-        Response response = client.newCall(request).execute();
-        if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-
-        Headers responseHeaders = response.headers();
-        for (int i = 0; i < responseHeaders.size(); i++) {
-            System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
-        }
-
-        System.out.println(response.body().string());
+//    public void run() throws Exception {
+//        Request request = new Request.Builder()
+//                .url("https://prototype-api.herokuapp.com/champions.json")
+//                .build();
+//        Response response = client.newCall(request).execute();
+//        if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+//
+//        Headers responseHeaders = response.headers();
+//        for (int i = 0; i < responseHeaders.size(); i++) {
+//            System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
+//        }
+//
+//        System.out.println(response.body().string());
 
 //        client.newCall(request).enqueue(new Callback() {
 //            @Override
@@ -54,17 +52,31 @@ public class ChampionSelectActivity extends Activity {
 //                System.out.println(response.body().string());
 //            }
 //        });
-    }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champion_select);
-        try {
-            run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.champion_recycler_view);
+
+        ArrayList<String> itemsData = new ArrayList<String>();
+        itemsData.add("Solo Queue Tier List");
+        itemsData.add("Competitive Tier List");
+        itemsData.add("Top Tier List");
+        itemsData.add("Mid Tier List");
+        itemsData.add("Jungle Tier List");
+        itemsData.add("Support Tier List");
+        itemsData.add("ADC Tier List");
+
+        // 2. set layoutManger
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // 3. create an adapter
+        ChampionSelectAdapter mAdapter = new ChampionSelectAdapter(itemsData);
+        // 4. set adapter
+        recyclerView.setAdapter(mAdapter);
+        // 5. set item animator to DefaultAnimator
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
 

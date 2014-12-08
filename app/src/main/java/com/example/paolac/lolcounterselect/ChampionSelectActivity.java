@@ -9,6 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 
@@ -68,6 +72,17 @@ public class ChampionSelectActivity extends Activity {
         itemsData.add("Jungle Tier List");
         itemsData.add("Support Tier List");
         itemsData.add("ADC Tier List");
+
+        try {
+            JSONArray mockChampions = new JSONArray(MockChampionJson.MOCK_CHAMPION_JSON);
+            for (int i = 0; i < mockChampions.length(); i++) {
+                Champion champion = new Champion((JSONObject) mockChampions.get(i));
+                itemsData.add(champion.getName());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         // 2. set layoutManger
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

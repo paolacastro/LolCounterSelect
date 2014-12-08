@@ -8,5 +8,7 @@
     <string name="counter_picks">Counter Picks</string>
     <string name="title_activity_tier_lists">TierListsActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_champion_select">ChampionSelectActivity</string>
+
 
 </resources>

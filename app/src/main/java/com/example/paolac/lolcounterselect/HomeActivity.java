@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 
 public class HomeActivity extends Activity {
@@ -18,6 +17,10 @@ public class HomeActivity extends Activity {
 
     public void showTierLists(View view) {
         TierListsActivity.start(this);
+    }
+
+    public void showCounterPicks(View view) {
+        ChampionSelectActivity.start(this);
     }
 
     @Override

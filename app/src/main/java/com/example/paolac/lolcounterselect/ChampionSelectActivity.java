@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class ChampionSelectActivity extends Activity {
+public class ChampionSelectActivity extends Activity implements ChampionSelectAdapter.OnChampionClickedListener {
 
 //    private final OkHttpClient client = new OkHttpClient();
 
@@ -88,6 +88,7 @@ public class ChampionSelectActivity extends Activity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // 3. create an adapter
         ChampionSelectAdapter mAdapter = new ChampionSelectAdapter(itemsData);
+        mAdapter.setOnChampionClickedListener(this);
         // 4. set adapter
         recyclerView.setAdapter(mAdapter);
         // 5. set item animator to DefaultAnimator
@@ -113,5 +114,11 @@ public class ChampionSelectActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onChampionItemClicked(String champion) {
+        ChampionCounters.start(this);
+
     }
 }

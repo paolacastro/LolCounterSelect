@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAdapter.ViewHolder> {
     private ArrayList<String> itemsData;
+    private OnChampionClickedListener mListener;
 
     public ChampionSelectAdapter(ArrayList<String> itemsData) {
         this.itemsData = itemsData;
@@ -28,12 +29,18 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         // - get data from your itemsData at this position
         // - replace the contents of the view with that itemsData
 
         viewHolder.txtViewTitle.setText(itemsData.get(position));
 //        viewHolder.imgViewIcon.setImageResource(itemsData[position].getImageUrl());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onChampionItemClicked(itemsData.get(position));
+            }
+        });
 
     }
 
@@ -43,8 +50,16 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
         return itemsData.size();
     }
 
+    public void setOnChampionClickedListener(OnChampionClickedListener listener) {
+        mListener = listener;
+    }
+
+    public interface OnChampionClickedListener {
+        public void onChampionItemClicked(String champion);
+    }
+
     // inner class to hold a reference to each item of RecyclerView
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtViewTitle;
         public ChampionSelectAdapter parentAdapter;
@@ -52,14 +67,8 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
         public ViewHolder(View itemLayoutView, ChampionSelectAdapter adapter) {
             super(itemLayoutView);
             parentAdapter = adapter;
-            itemLayoutView.setOnClickListener(this);
             txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.item_title);
         }
 
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "position = " + getPosition(), Toast.LENGTH_SHORT).show();
-            ChampionCounters.start(this.parentAdapter);
-        }
     }
 }

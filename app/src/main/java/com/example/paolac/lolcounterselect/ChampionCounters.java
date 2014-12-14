@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 public class ChampionCounters extends Activity {
 
-    public static void start(ChampionSelectAdapter context) {
+    public static void start(ChampionSelectActivity context) {
         Intent intent;
         intent = new Intent(context, ChampionCounters.class);
         context.startActivity(intent);

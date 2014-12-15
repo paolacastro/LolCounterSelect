@@ -1,5 +1,7 @@
 package com.example.paolac.lolcounterselect;
 
+import android.app.Activity;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAdapter.ViewHolder> {
     private ArrayList<String> itemsData;
     private OnChampionClickedListener mListener;
+    public Typeface roboto;
 
     public ChampionSelectAdapter(ArrayList<String> itemsData) {
         this.itemsData = itemsData;
@@ -32,8 +35,9 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         // - get data from your itemsData at this position
         // - replace the contents of the view with that itemsData
-
+        viewHolder.roboto = roboto;
         viewHolder.txtViewTitle.setText(itemsData.get(position));
+
 //        viewHolder.imgViewIcon.setImageResource(itemsData[position].getImageUrl());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +64,7 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
 
     // inner class to hold a reference to each item of RecyclerView
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
+        public Typeface roboto;
         public TextView txtViewTitle;
         public ChampionSelectAdapter parentAdapter;
 
@@ -68,6 +72,8 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
             super(itemLayoutView);
             parentAdapter = adapter;
             txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.item_title);
+            txtViewTitle.setTypeface(roboto);
+            txtViewTitle.setAllCaps(true);
         }
 
     }

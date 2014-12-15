@@ -2,6 +2,7 @@ package com.example.paolac.lolcounterselect;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -89,6 +90,7 @@ public class ChampionSelectActivity extends Activity implements ChampionSelectAd
         // 3. create an adapter
         ChampionSelectAdapter mAdapter = new ChampionSelectAdapter(itemsData);
         mAdapter.setOnChampionClickedListener(this);
+        mAdapter.roboto = Typeface.createFromAsset(this.getBaseContext().getAssets(),"Gotham-Medium.otf");
         // 4. set adapter
         recyclerView.setAdapter(mAdapter);
         // 5. set item animator to DefaultAnimator

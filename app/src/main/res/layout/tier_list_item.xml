@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:sm="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/blah"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/blah"
 
     >
     <!-- title -->
@@ -11,26 +10,37 @@
         android:id="@+id/item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#33B5E5"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="13dp"
+        android:gravity="center"
+        android:textColor="#333333"
         android:textSize="16sp" />
 
     <!-- icon -->
-    <ImageView
+    <!--<ImageView-->
+    <!--android:id="@+id/item_icon"-->
+    <!--android:layout_width="64dp"-->
+    <!--android:layout_height="64dp"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_marginLeft="8dp"-->
+    <!--android:layout_marginRight="8dp"-->
+    <!--android:layout_marginTop="1dp"-->
+    <!--android:layout_marginBottom="1dp"-->
+    <!--android:contentDescription="icon"-->
+    <!--android:src="@drawable/ic_launcher"-->
+    <!--/>-->
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/item_icon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
-        android:contentDescription="icon"
-        android:src="@drawable/ic_launcher"
-        />
+        android:layout_marginTop="8dp"
+        android:src="@drawable/aatrox"
+        app:border_color="#FF000000"
+        app:border_width="2dp" />
 
 
 </RelativeLayout>

@@ -16,7 +16,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
 public class ChampionSelectActivity extends Activity implements ChampionSelectAdapter.OnChampionClickedListener {
 
 //    private final OkHttpClient client = new OkHttpClient();
@@ -64,15 +63,9 @@ public class ChampionSelectActivity extends Activity implements ChampionSelectAd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champion_select);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.champion_recycler_view);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
         ArrayList<String> itemsData = new ArrayList<String>();
-        itemsData.add("Solo Queue Tier List");
-        itemsData.add("Competitive Tier List");
-        itemsData.add("Top Tier List");
-        itemsData.add("Mid Tier List");
-        itemsData.add("Jungle Tier List");
-        itemsData.add("Support Tier List");
-        itemsData.add("ADC Tier List");
 
         try {
             JSONArray mockChampions = new JSONArray(MockChampionJson.MOCK_CHAMPION_JSON);

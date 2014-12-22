@@ -9,10 +9,12 @@
     <TextView
         android:id="@+id/item_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:gravity="center"
         android:textColor="#333333"
-        android:textSize="16sp" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="18dp"
+        android:textSize="18sp" />
 
     <!-- icon -->
     <!--<ImageView-->
@@ -40,7 +42,7 @@
         android:layout_marginTop="8dp"
         android:src="@drawable/aatrox"
         app:border_color="#FF000000"
-        app:border_width="2dp" />
+        app:border_width="1dp" />
 
 
 </RelativeLayout>

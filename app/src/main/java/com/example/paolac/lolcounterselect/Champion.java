@@ -9,7 +9,7 @@ public class Champion {
 
     public Champion(JSONObject json) throws JSONException {
         mName = json.optString("name");
-        mPortrait = json.optString("portrait");
+        mPortrait = json.optString("portrait").toLowerCase();
     }
 
 

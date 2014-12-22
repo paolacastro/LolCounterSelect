@@ -15,10 +15,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChampionSelectActivity extends Activity implements ChampionSelectAdapter.OnChampionClickedListener {
 
 //    private final OkHttpClient client = new OkHttpClient();
+
+    public final String KEY_CHAMPION_NAME = "name";
+    public final String KEY_CHAMPION_PORTRAIT = "portrait";
 
     public static void start(HomeActivity context) {
         Intent intent = new Intent(context, ChampionSelectActivity.class);
@@ -65,23 +70,26 @@ public class ChampionSelectActivity extends Activity implements ChampionSelectAd
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.champion_recycler_view);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
-        ArrayList<String> itemsData = new ArrayList<String>();
-
+        ArrayList<HashMap> itemsData = new ArrayList<HashMap>();
         try {
             JSONArray mockChampions = new JSONArray(MockChampionJson.MOCK_CHAMPION_JSON);
             for (int i = 0; i < mockChampions.length(); i++) {
                 Champion champion = new Champion((JSONObject) mockChampions.get(i));
-                itemsData.add(champion.getName());
+                HashMap<String, String> myMap = new HashMap<String, String>();
+                myMap.put(KEY_CHAMPION_NAME, champion.getName());
+                myMap.put(KEY_CHAMPION_PORTRAIT, champion.getPortrait());
+                itemsData.add(myMap);
             }
         } catch (JSONException e) {
             e.printStackTrace();
+
         }
 
 
         // 2. set layoutManger
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // 3. create an adapter
-        ChampionSelectAdapter mAdapter = new ChampionSelectAdapter(itemsData);
+        ChampionSelectAdapter mAdapter = new ChampionSelectAdapter(itemsData,this);
         mAdapter.setOnChampionClickedListener(this);
         mAdapter.roboto = Typeface.createFromAsset(this.getBaseContext().getAssets(),"Gotham-Medium.otf");
         // 4. set adapter

@@ -1,23 +1,29 @@
 package com.example.paolac.lolcounterselect;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAdapter.ViewHolder> {
-    private ArrayList<String> itemsData;
+    private ArrayList<HashMap> itemsData;
     private OnChampionClickedListener mListener;
     public Typeface roboto;
+    private ChampionSelectActivity mContext;
 
-    public ChampionSelectAdapter(ArrayList<String> itemsData) {
+    public ChampionSelectAdapter(ArrayList<HashMap> itemsData, Context context) {
         this.itemsData = itemsData;
+        mContext = (ChampionSelectActivity)context;
     }
 
     @Override
@@ -36,13 +42,17 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
         // - get data from your itemsData at this position
         // - replace the contents of the view with that itemsData
         viewHolder.roboto = roboto;
-        viewHolder.txtViewTitle.setText(itemsData.get(position));
+        final HashMap<String,String> championData = itemsData.get(position);
+        viewHolder.txtViewTitle.setText(championData.get(mContext.KEY_CHAMPION_NAME));
+        String championPortrait = championData.get(mContext.KEY_CHAMPION_PORTRAIT);
+        int id = mContext.getResources().getIdentifier("com.example.paolac.lolcounterselect:drawable/" + championPortrait, null, null);
+        viewHolder.championImg.setImageResource(id);;
 
 //        viewHolder.imgViewIcon.setImageResource(itemsData[position].getImageUrl());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onChampionItemClicked(itemsData.get(position));
+                mListener.onChampionItemClicked(championData.get(mContext.KEY_CHAMPION_NAME));
             }
         });
 
@@ -66,12 +76,14 @@ public class ChampionSelectAdapter extends RecyclerView.Adapter<ChampionSelectAd
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public Typeface roboto;
         public TextView txtViewTitle;
+        public ImageView championImg;
         public ChampionSelectAdapter parentAdapter;
 
         public ViewHolder(View itemLayoutView, ChampionSelectAdapter adapter) {
             super(itemLayoutView);
             parentAdapter = adapter;
             txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.item_title);
+            championImg = (ImageView) itemLayoutView.findViewById(R.id.item_icon);
             txtViewTitle.setTypeface(roboto);
             txtViewTitle.setAllCaps(true);
         }

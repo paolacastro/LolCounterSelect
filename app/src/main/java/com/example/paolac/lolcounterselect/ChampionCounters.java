@@ -13,8 +13,12 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
 
+import it.neokree.materialtabs.MaterialTab;
+import it.neokree.materialtabs.MaterialTabHost;
+import it.neokree.materialtabs.MaterialTabListener;
 
-public class ChampionCounters extends FragmentActivity {
+
+public class ChampionCounters extends FragmentActivity implements MaterialTabListener{
 
     public static void start(ChampionSelectActivity context) {
         Intent intent;
@@ -37,6 +41,25 @@ public class ChampionCounters extends FragmentActivity {
         mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
 
+        final MaterialTabHost tabHost = (MaterialTabHost) this.findViewById(R.id.materialTabHost);
+
+        mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                // when user do a swipe the selected tab change
+                tabHost.setSelectedNavigationItem(position);
+            }
+        });
+
+        // insert all tabs from pagerAdapter data
+        for (int i = 0; i < mAdapter.getCount(); i++) {
+            tabHost.addTab(
+                    tabHost.newTab()
+                            .setText("newest" + i)
+                            .setTabListener(this)
+            );
+        }
+
         // Watch for button clicks.
         Button button = (Button)findViewById(R.id.goto_first);
         button.setOnClickListener(new View.OnClickListener() {
@@ -50,9 +73,9 @@ public class ChampionCounters extends FragmentActivity {
                 mPager.setCurrentItem(NUM_ITEMS-1);
             }
         });
-
-
     }
+
+
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -105,5 +128,21 @@ public class ChampionCounters extends FragmentActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onTabSelected(MaterialTab tab) {
+        // when the tab is clicked the pager swipe content to the tab position
+        mPager.setCurrentItem(tab.getPosition());
+
+    }
+
+    @Override
+    public void onTabReselected(MaterialTab materialTab) {
+
+    }
+
+    @Override
+    public void onTabUnselected(MaterialTab materialTab) {
+
     }
 }

@@ -16,6 +16,19 @@ public class CountersPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 2;
+    }
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return "Tab One";
+            case 1:
+                return "Tab Two";
+            case 2:
+                return "Tab Three";
+        }
+
+        return null;
     }
 }
